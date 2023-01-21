@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  height: fit-content;
+}
+
+.left-pane {
+  padding: 20px;
+  min-height: 100vh;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  background-color: #2d3439;
+}
+.form-container {
+  width: 90%;
+}
