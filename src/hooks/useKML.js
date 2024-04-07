@@ -1,9 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useStore } from "../context/store";
 
 const useKML = () => {
-  const [kml, setKml] = useState([]);
-
+  const { selectFolder, kml, setKml } = useStore();
   const getAllKmls = async () => {
     const body = {
       query: "kml",
@@ -20,10 +19,13 @@ const useKML = () => {
     const kmls = result.data.items.filter(
       (data) => data.name.split(".")[1] === "kml"
     );
+
     setKml(kmls);
   };
 
-  return { kml, getAllKmls, setSpecificKML };
+  console.log(kml);
+
+  return { kml, getAllKmls, setSpecificKML, setKml };
 };
 
 export default useKML;

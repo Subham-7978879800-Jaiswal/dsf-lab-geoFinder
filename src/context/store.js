@@ -8,6 +8,8 @@ const StoreProvider = ({ children }) => {
   const [selectFolder, setSelectFolder] = useState(false);
   const [folderIdForKmlSave, setFolderIdForKmlSave] = useState();
   const [previewFlow, setPreviewFlow] = useState(false);
+  const [user, setUser] = useState("");
+  const [kml, setKml] = useState([]);
 
   const updateSelectFolder = (data) => {
     setSelectFolder(data);
@@ -29,6 +31,10 @@ const StoreProvider = ({ children }) => {
         updateSelectFolder,
         updateFolderIdForKmlSave,
         updatePreviewFlow,
+        user,
+        setUser,
+        kml,
+        setKml,
       }}
     >
       {children}

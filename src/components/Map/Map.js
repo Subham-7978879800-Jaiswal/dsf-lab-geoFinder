@@ -5,6 +5,7 @@ import {
   LoadScript,
   StandaloneSearchBox,
 } from "@react-google-maps/api";
+import { useStore } from "../../context/store";
 
 const containerStyle = {
   width: window.innerWidth - 400,
@@ -15,7 +16,8 @@ const { REACT_APP_GOOGLE_MAPS_API_KEY, REACT_APP_HOST } = process.env;
 
 const libraries = ["places"];
 
-const Map = ({ mapClickHandler, center, kml }) => {
+const Map = ({ mapClickHandler, center }) => {
+  const { kml } = useStore();
   function handleLoad() {}
 
   function handlePlacesChanged() {
@@ -62,14 +64,7 @@ const Map = ({ mapClickHandler, center, kml }) => {
           kml.map((kml, index) => {
             return (
               <KmlLayer
-                onClick={() => {
-                  window
-                    .open(
-                      `${REACT_APP_HOST}/folder/${kml.virtual_id}`,
-                      "_blank"
-                    )
-                    ?.focus();
-                }}
+                onClick={() => {}}
                 key={index}
                 url={`${REACT_APP_HOST}/api/image/${kml.id}/download`}
               />

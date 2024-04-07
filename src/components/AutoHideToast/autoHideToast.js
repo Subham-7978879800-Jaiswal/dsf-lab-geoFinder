@@ -24,7 +24,7 @@ function AutoHideToast() {
               alt=""
             />
             <strong className="me-auto"></strong>
-            <small>11 mins ago</small>
+            <small>1 mins ago</small>
           </Toast.Header>
           <Toast.Body>The File is saved in the required Directory!</Toast.Body>
         </Toast>
