@@ -18,6 +18,7 @@ const center = {
 function App() {
   const [dataForm, setDataForm] = useState(false);
   const [saved, setSaved] = useState(false);
+
   const {
     selectFolder,
     updateSelectFolder,
@@ -164,7 +165,6 @@ function App() {
     : onFolderSelectForNewKmlSaving;
 
   const MapView = () => {
-    // Rename nested component to MapView
     return (
       <div className="app-container">
         <LeftPane
@@ -184,6 +184,7 @@ function App() {
             <SelectFolder onFolderSelect={onFolderSelect}></SelectFolder>
           )}
         </div>
+        <div></div>
       </div>
     );
   };

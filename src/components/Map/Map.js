@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   GoogleMap,
   KmlLayer,
   LoadScript,
   StandaloneSearchBox,
+  DirectionsService,
+  DirectionsRenderer,
 } from "@react-google-maps/api";
 import { useStore } from "../../context/store";
 
@@ -17,6 +19,7 @@ const { REACT_APP_GOOGLE_MAPS_API_KEY, REACT_APP_HOST } = process.env;
 const libraries = ["places"];
 
 const Map = ({ mapClickHandler, center }) => {
+  const [directions, setDirections] = useState(null);
   const { kml } = useStore();
   function handleLoad() {}
 
@@ -24,6 +27,14 @@ const Map = ({ mapClickHandler, center }) => {
     // * TODO IMPLEMENT Search Feature
     console.log("handlePlacesChanged");
   }
+
+  const directionsCallback = (response) => {
+    if (response !== null && response.status === "OK") {
+      setDirections(response);
+    } else {
+      console.log("Error fetching directions");
+    }
+  };
 
   return (
     <LoadScript
@@ -64,7 +75,12 @@ const Map = ({ mapClickHandler, center }) => {
           kml.map((kml, index) => {
             return (
               <KmlLayer
-                onClick={() => {}}
+                onClick={(event) => {
+                  const url = `https://www.google.com/maps?q=${event.latLng.lat()},${event.latLng.lng()}`;
+
+                  // Open the URL in a new tab
+                  window.open(url, "_blank");
+                }}
                 key={index}
                 url={`${REACT_APP_HOST}/api/image/${kml.id}/download`}
               />
